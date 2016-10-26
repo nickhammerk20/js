@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF8">
+        <title> минимальное значениеж </title>
+        
+    </head>
+    <body>
+        ПЕРВОЕ число
+        <input type="text" id = "one1" value = 3> </br>
+        ВТОРОЕ число
+        <input type="text" id = "two2" value = 10> </br>
+        <button id = "buttonCompChoise" onclick="what()"> Rezult </button>
+
+        <script>
+            
+            function what()
+            {
+                var one = parseInt ( one1.value );
+                var two = parseInt ( two2.value ); 
+                alert (whatNumber(one, two));
+           
+                function whatNumber(one, two)
+                {
+                    if ( one <= two)
+                        {
+                            return one;
+                        }
+                    else
+                        {
+                           return two;
+                        }
+                }
+            }
+            
+            
+        </script>
+
+        <script>
+            
+                var one = 20;
+                var two = 50; 
+                alert (whatNumber(one, two));
+           
+                function whatNumber(one, two)
+                {
+                    if ( one <= two)
+                        {
+                            return one;
+                        }
+                    else
+                        {
+                           return two;
+                        }
+                }         
+            
+        </script>
+
+        
+    </body>
+</html>

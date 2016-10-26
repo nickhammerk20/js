@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF8">
+        <title> изучение областепй вдимости </title>
+        
+    </head>
+    <body>
+        
+        <script>
+        function f1()
+            {
+                var x = "Hello";
+                
+                function f2()
+                {
+//                    var x = "Bye";
+                    var y = "Ларисса";
+                    
+                    function f3()
+                    {
+                        var res = y + " " + x + "!";
+                        console.log(alert ( res ));
+                    }
+                    f3();
+                }
+                f2();
+            }       
+            f1();
+        
+        </script>
+        
+        <script>
+            var x = "outside";
+            
+            function f1()
+            {
+                x = "inside F1"; // выведет insade f1
+//                var x = "inside F1"; // выведет outside
+            }
+            
+            f1();
+            alert(x);
+        </script>
+        
+    </body>
+</html>

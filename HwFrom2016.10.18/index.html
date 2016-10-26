@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF8">
+        <title> Home work from 18.10.16 </title>
+            
+    </head>
+    
+    <body>
+        <div id = "first" >
+            <div id = "task1">
+                <h2> Task 1: </h2>
+                    Ноль чётный. Единица нечётная. У любого числа N чётность такая же, как у
+                    N-2.
+                    Напишите рекурсивную функцию isEven согласно этим правилам. Она
+                    должна принимать число и возвращать булевское значение.
+                    Потестируйте её на 50 и 75. Попробуйте задать ей -1. Почему она ведёт себя
+                    таким образом? Можно ли её как-то исправить?
+            </div>  
+            <div id = "answer1">
+                <h3>Answer:</h3>
+                <input type = "text" id = "number" placeholder="Введите число" > </br>
+                <button id = numberButton onclick="isEven()"> Узнать какое число </button></br>
+                <input id="resTask1Res1" placeholder="Результат">
+            </div>
+        </div>
+        
+        <div id = "two" >
+            <div id = "task2">
+                <h2> Task 2: </h2>
+                Символ номер N строки можно получить, добавив к ней .charAt(N) (
+                “строчка”.charAt(5) ) – схожим образом с получением длины строки при
+                помощи .length. Возвращаемое значение будет строковым, состоящим из
+                одного символа (к примеру, “к”). У первого символа строки позиция 0, что
+                означает, что у последнего символа позиция будет string.length – 1. Другими
+                словами, у строки из двух символов длина 2, а позиции её символов будут 0
+                и 1.
+                Напишите функцию countBs, которая принимает строку в качестве аргумента,
+                и возвращает количество символов “B”, содержащихся в строке.
+                Затем напишите функцию countChar, которая работает примерно как countBs,
+                только принимает второй параметр — символ, который мы будем искать в
+                строке (вместо того, чтобы просто считать количество символов “B”). Для
+                этого переделайте функцию countBs.
+            </div>
+            <div id = "answer2">
+                <h3>Answer:</h3>
+                <input type = "text1" id = "string" placeholder="Введите строку"> </br>
+                <input type = "text2" id = "charfind" placeholder="искомый символ( по умолчанию B)"> </br>
+                <button id = howManyB onclick="countBs()"> Узнать кол-во символов </button></br>
+                <input id="resTask2Res" placeholder="Результат">
+            </div>
+        </div>
+        
+        <div id = "three" >
+            <div id = "task2">
+                <h2> Task 2: </h2>
+                Напишите функцию range, принимающую два аргумента, начало и конец диапазона, и возвращающую массив, который содержит все числа из него, включая начальное и конечное.Затем напишите функцию sum, принимающую массив чисел и возвращающую их сумму. Запустите указанную выше инструкцию и убедитесь, что она возвращает 55.В качестве бонуса дополните функцию range, чтобы она могла принимать необязательный третий аргумент – шаг для построения массива. Если он не задан, шаг равен единице. Вызов функции range(1, 10, 2) должен будет вернуть [1, 3, 5, 7, 9]. Убедитесь, что она работает с отрицательным шагом так, что вызов range(5, 2, -1) возвращает [5, 4, 3, 2].
+                console.log(sum(range(1, 10))); // → 55 
+                console.log(range(5, 2, -1)); // → [5, 4, 3, 2]
+            </div>   
+            <div id = "answer3">
+                <h3>Answer:</h3>
+                <input type = "text4" id = "downLine" placeholder="нижняя грань"> </br>
+                <input type = "text5" id = "upLine" placeholder="верхняя грань"> </br>
+                <input type = "text6" id = "whatChar" placeholder="шаг"> </br>
+                <button id = howManyB onclick="sum()"> Сумма диапазона </button></br>
+                <button id = howManyChar onclick="range()"> Вывести массив по шагу </button></br>
+                <input type = "text7" id = "resTask3Res" placeholder="результат"> </br>
+                
+            </div>
+        </div>       
+    </body>
+    
+    <script>
+        function isEven()
+        {
+            var numb = parseInt (number.value);        
+            var flag = isEventRecurs( numb );
+            resTask1Res1.value = flag;
+            
+        }
+        function isEventRecurs( numb )
+        {        
+            console.log(numb);
+            
+            if (numb == 0 )
+                {
+                   return true;
+                }
+            if ( numb == -1)
+                {
+                    return false;
+                }
+            if ( numb >=1 )
+                {
+                    return isEventRecurs( numb -2);        
+                }               
+        }  
+        
+        function countBs()
+        {
+            var char = 'b';
+            if(charfind.value != "")
+                {
+                  char = charfind.value;
+                }
+            resTask2Res.value = countChar(char);
+            
+        }
+        function countChar(char)
+        {
+            var str = string.value;
+            
+            var count = 0;
+            var simbol = char;
+            for (var i = 0 ; i < str.length; i++)
+                {
+                    console.log(simbol);
+                   if ( simbol == str.toLocaleLowerCase().charAt(i))
+                       {
+                          console.log(str.toLocaleLowerCase().charAt(i)); 
+                           console.log(count++);
+                       }
+                }
+            return count;
+        }
+        
+        
+       function range(min, max, step)
+        {
+            var arr = [];
+            var i = 0;
+            var j = min;
+            while( j <= max )
+                {
+                    arr[i] = min;
+                    min++;
+                    i++;
+                    j++;
+                }
+            return arr;
+        }
+
+function sum(Array)
+{
+    var sum;
+    for(var i = 0 ; i < Array.length ; i++ )
+        {
+            sum+=Array[i];
+        }
+    return sum;
+}
+        
+    </script>
+</html>

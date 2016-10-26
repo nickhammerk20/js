@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Рандомный номер</title>
+    </head>
+    <body>
+        <button id = "buttonCompChoise" onclick="whatNumber()"> WhatNumber </button>
+
+
+    <script>
+        function CompChoise()
+        {
+            min = 1;
+            max = 100;
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+        var compNumber = CompChoise();
+        var userChoise;
+        var equals;
+        var userChoise;
+
+        function whatNumber()
+        {
+            for( var i = 0 ; i < 10 ; i++)
+            {
+                console.log(userChoise = prompt("What PC random number (1 - 100)" + compNumber, "0"));
+
+                if( compNumber == userChoise )
+                {
+                    alert("You win!");
+                    break;
+                }
+                else //if( i != 0)
+                {
+                    alert(hotCold(userChoise, compNumber));
+                }
+            }
+            alert("PC random number = " + compNumber )
+        }
+
+        function hotCold(userChoise,compNumber)
+        {
+            console.log(equals = Math.abs(userChoise - compNumber));
+            if( equals <= 10)
+            {
+                ret = "hot";
+            }
+            else
+            {
+                ret = "cold";
+            }
+            return ret;
+        }
+
+    </script>
+    </body>
+</html>

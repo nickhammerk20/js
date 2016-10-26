@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF8">
+        <title> возведения в степень циклом и рекурсией </title>
+        
+    </head>
+    <body>
+        число
+        <input type="text" id = "number" value = 3> </br>
+        степень
+        <input type="text" id = "square" value = 3> </br>
+        <button id = "buttonCompChoise" onclick="whatNumber()"> Rezult </button>
+
+    <script> 
+        
+        function cyclesNumber(num, squar)
+        {
+            ret = 1;
+            
+            for( var i = 1 ; i < squar ; i++)
+            {
+                console.log(ret = ret * num);
+            }
+            console.log(ret);
+            return ret; 
+        }
+        
+        function recurs(num, squar)
+        {
+            
+            if ( squar != 2 )
+                {
+                    return num * recurs(num, squar - 1);
+                }
+            else
+                {
+                    return num;   
+                }            
+        }
+        
+        function whatNumber()
+        {
+            var num = parseInt ( number.value );
+            var squar = parseInt ( square.value );
+            var str = "Возведение в степень: \n циклом = " + cyclesNumber(num, squar) + "\n рекурсией = " + recurs(num, squar) ;
+            alert( str );
+            
+        }
+    </script>
+    </body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF8">
+        <title> clock </title>
+        <style>
+            #divWatch {
+            color: RED;
+                /*text-align:center; */
+                border:1px solid black; 
+                width:250px;
+                text-align: center;
+                color:blue; 
+                font-size: 300%; 
+                font-weight: bold;
+                overflow: visible;
+            }
+            p {
+                margin: 0;                
+            }
+        </style>
+            
+    </head>
+    
+    <body onload="digitalWatch()">
+        <div id = "divWatch" onclick = "clickLeft()" oncontextmenu="return clickRight();">
+            <p id="watch"></p>
+        </div>
+        
+    </body>
+    
+    <script type="text/javascript">
+    
+        var clickMouse = "HHMM"; // HHMM ; HHMMSS ; DDMMYY
+        function clickLeft(event)
+        {
+            event = event || window.event;
+            if( clickMouse == "HHMM")
+                {
+                    clickMouse = "HHMMSS";                    
+                }
+            else
+                {
+                    clickMouse = "HHMM";                    
+                }
+        }
+        
+        function clickRight(event)
+        {
+            event = event || window.event;
+            if( clickMouse == "DDMMYY")
+                {
+                    clickMouse = "HHMM";                    
+                }
+            else
+                {
+                    clickMouse = "DDMMYY";
+                }
+            return false;
+        }
+        
+        function digitalWatch() 
+        {
+            var date = new Date();
+            var day = date.getDate();
+            var mounth = date.getMonth() + 1;
+            var year = date.getFullYear();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            
+            var dot = "<span style='color:blue'>:</span>";
+            if (seconds%2 == 0)
+                {
+                   dot = "<span style='color:white'>:</span>";
+                }            
+            if (day < 10) 
+            {
+                day = "0" + day;
+            }
+            if (mounth < 10) 
+            {
+                mounth = "0" + mounth;
+            }
+            if (hours < 10) 
+            {
+                hours = "0" + hours;
+            }
+            if (minutes < 10) 
+            {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) 
+            {
+                seconds = "0" + seconds;
+            }
+            if(clickMouse == "HHMM")
+                {
+                document.getElementById("watch").innerHTML =  hours + dot + minutes;
+                }
+            if(clickMouse == "HHMMSS")
+                {
+                document.getElementById("watch").innerHTML =  hours + ":" + minutes + ":" + seconds;
+                }
+             if(clickMouse == "DDMMYY")
+                {
+                document.getElementById("watch").innerHTML =  day + "." + mounth + "." + year;
+                }
+            
+            setTimeout("digitalWatch()", 1000);  
+                                
+//            document.getElementById("watch").innerHTML =  day + "." + mounth + "." + year + " " +hours + ":" + minutes + ":" + seconds;
+//            setTimeout("digitalWatch()", 1000);
+         }
+        
+</script>
+</html>
