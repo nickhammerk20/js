@@ -8,6 +8,7 @@
 .idea
 Rubbish/
 workspace.xml
+.idea\workspace.xml
 
 *.class
 
