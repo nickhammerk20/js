@@ -3,16 +3,15 @@
  */
 
 
-var a = 1227345678928;
+var a = -444410026;
 console.log(a);
 function numToChar(number)
 {
-    var num = ""+number;
+    var num = ""+Math.abs(number);
     var arr = [];
+    // console.log(num);
     for ( var i = 0 ; i < num.length ; i++ )
     {
-
-
         arr[i] = parseInt(num.charAt(i));
     }
 
@@ -28,16 +27,12 @@ function numToChar(number)
         {
             res += arrAlph[arr[i]];
         }
-        else if (arr[i] == 0 && arr[i + 1])
-        {
-            res += arrAlph[arr[i]];
-        }
-        else if( arr[i] < 2 && arr[i + 1])
+        else if( arr[i] <= 2 && arr[i + 1])
         {
             var c = ""+arr[i]+arr[i+1];
-            if( c >=26 )
+            if( c >= 25 )
             {
-                res += arrAlph[arr[i]] + arr[i+1];
+                res += arrAlph[arr[i]] + arrAlph[arr[i+1]];
             }
             else
             {
@@ -45,7 +40,11 @@ function numToChar(number)
             }
             i++;
         }
-        else if( arr[i] >= 2  || arr[i + 1])
+        else if( arr[i] > 2  && arr[i + 1])
+        {
+            res += arrAlph[arr[i]];
+        }
+        else if( arr[i] > 2  && !arr[i + 1])
         {
             res += arrAlph[arr[i]];
         }
@@ -53,11 +52,23 @@ function numToChar(number)
         {
             res += arrAlph[arr[i]];
         }
+        else if( (arr[i] == 1 || arr[i] == 2) && !arr[i + 1])
+        {
+            var c = ""+arr[i]+arr[i+1];
+            if( c >= 26 )
+            {
+                res += arrAlph[arr[i]] + arrAlph[arr[i+1]];
+            }
+            else
+            {
+                res += arrAlph[parseInt(c)];
+            }
+            i++;
+        }
         else if( arr[i] == 1 )
         {
             res += arrAlph[arr[i]];
         }
-        // console.log(arr[i]+"  "+res);
     }
     return res;
 }
