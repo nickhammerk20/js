@@ -3,9 +3,10 @@
 .classpath
 .project
 .settings/
-.idea
-.idea/workspace.xml
 Rubbish/
+*.iml
+.idea
+logs/
 
 
 *.class
