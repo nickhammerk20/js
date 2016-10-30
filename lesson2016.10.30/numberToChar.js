@@ -3,7 +3,7 @@
  */
 
 
-var a = 1227345678901;
+var a = 1227345678928;
 console.log(a);
 function numToChar(number)
 {
@@ -11,9 +11,12 @@ function numToChar(number)
     var arr = [];
     for ( var i = 0 ; i < num.length ; i++ )
     {
+
+
         arr[i] = parseInt(num.charAt(i));
     }
-    console.log(arr);
+
+    // console.log(arr);
 
     var arrAlph = ['A','B','C','D','E','F','G','H','I','J',
         'K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
@@ -54,8 +57,7 @@ function numToChar(number)
         {
             res += arrAlph[arr[i]];
         }
-
-        console.log(arr[i]+"  "+res);
+        // console.log(arr[i]+"  "+res);
     }
     return res;
 }
