@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Педагогическое тестирование</title>
+    <script src="logic.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/css/uikit.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/js/uikit.min.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <h1>Укажите следующие параметры</h1></br>
+        <table>
+            <tr>
+                <td>
+                    Вес подопытного:</br>
+                    <input type="text" id = "weight" > </br>
+                </td>
+                </tr>
+            <tr>
+                <td>
+                    <h2>Жим лежа:</h2>
+                    Max, кг:</br>
+                    <input type="text" id = "gymMaxWeight" ></br>
+                    90%:</br>
+                    <input type="text" id = "gymMaxWeight90" placeholder="расчётное"/></br>
+                    Кол-во повторов (n1):</br>
+                    <input type="text" id = "gymCountN1" ></br>
+                    60%:</br>
+                    <input type="text" id = "gymMaxWeight60" placeholder="расчётное"/></br>
+                    Кол-во повторов (n2):</br>
+                    <input type="text" id = "gymCountN2" ></br>
+                    Ke:</br>
+                    <input type="text" id = "gymKe" placeholder="расчётное"> </br>
+                    Fмакс рас сила:</br>
+                    <input type="text" id = "gymFmax" placeholder="расчётное"> </br>
+                </td>
+                <td>
+                    <h2>Тяга к груди:</h2>
+                    Max, кг:</br>
+                    <input type="text" id = "pullMaxWeight" ></br>
+                    90%:</br>
+                    <input type="text" id = "pullMaxWeight90" placeholder="расчётное"/></br>
+                    Кол-во повторов (n1):</br>
+                    <input type="text" id = "pullCountN1" ></br>
+                    60%:</br>
+                    <input type="text" id = "pullMaxWeight60" placeholder="расчётное"/></br>
+                    Кол-во повторов (n2):</br>
+                    <input type="text" id = "pullCountN2" ></br>
+                    Ke:</br>
+                    <input type="text" id = "pullKe" placeholder="расчётное"> </br>
+                    Fмакс рас сила:</br>
+                    <input type="text" id = "pullFmax" placeholder="расчётное"> </br>
+                </td>
+                <td>
+                    <h2>Результаты:</h2>
+                    ПК АнП:</br>
+                    <input type="text" id = "rezAnP" placeholder="расчётное"></br>
+                    ПК АнП мл/кг:</br>
+                    <input type="text" id = "rezAnP_mlkg" placeholder="расчётное"/></br>
+                    МАМ:</br>
+                    <input type="text" id = "rezMam" placeholder="расчётное"></br>
+                    МАМ вт/кг:</br>
+                    <input type="text" id = "rezMam_wtkg" placeholder="расчётное"/></br>
+                    </br>
+                    <button id = "button" onclick="calculate()"> Расчитать </button>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+<script>
+    function calculate()
+    {
+        var weight2             = parseInt ( weight.value );
+
+        var gym_maxWeight       = parseInt ( gymMaxWeight.value );
+        var gym_countN1         = parseInt ( gymCountN1.value );
+        var gym_countN2         = parseInt ( gymCountN2.value );
+        var pull_maxWeight      = parseInt ( pullMaxWeight.value );
+        var pull_countN1        = parseInt ( pullCountN1.value );
+        var pull_countN2        = parseInt ( pullCountN2.value );
+
+        var gym_MaxWeight90     = calcPercent(gym_maxWeight, "90");
+        var gym_MaxWeight60     = calcPercent(gym_maxWeight, "60");
+        var gym_Ke              = calcKe(gym_MaxWeight90, gym_MaxWeight60, gym_countN1, gym_countN2);
+        var gym_Fmax            = calcFmax(gym_MaxWeight90, gym_Ke, gym_countN1);
+        var pull_MaxWeight90    = calcPercent(pull_maxWeight, "90");
+        var pull_MaxWeight60    = calcPercent(pull_maxWeight, "60");
+        var pull_Ke             = calcKe(pull_MaxWeight90, pull_MaxWeight60, pull_countN1, pull_countN2);
+        var pull_Fmax           = calcFmax(pull_MaxWeight90, pull_Ke, pull_countN1);
+
+        var AnP = calcAnp( gym_Fmax, gym_Ke , pull_Fmax , pull_Ke);
+        var AnP_mlkg = calcAnP_mlkg(AnP, weight2);
+        var Mam = calcMam(gym_Ke, gym_Fmax, pull_Ke, pull_Fmax);
+        var Mam_wtkg = calcMam_wtkg(Mam , weight2);
+
+        gymMaxWeight90.value    = gym_MaxWeight90;
+        gymMaxWeight60.value    = gym_MaxWeight60;
+        gymKe.value             = gym_Ke;
+        gymFmax.value           = gym_Fmax;
+        pullMaxWeight90.value   = pull_MaxWeight90;
+        pullMaxWeight60.value   = pull_MaxWeight60;
+        pullKe.value            = pull_Ke;
+        pullFmax.value          = pull_Fmax;
+        rezAnP.value            = AnP;
+        rezAnP_mlkg.value       = AnP_mlkg;
+        rezMam.value            = Mam;
+        rezMam_wtkg.value       = Mam_wtkg;
+    }
+
+    function calcAnp( gym_Fmax, gym_Ke , pull_Fmax , pull_Ke)
+    {
+        var ret = ( 0.93 + ( 0.0084 * gym_Fmax ) - ( 0.15 * gym_Ke ) - ( 0.0014 * pull_Fmax ) - ( 0.22 * pull_Ke));
+        return ret;
+    }
+    function calcAnP_mlkg(AnP, weight2)
+    {
+        var ret = ( AnP * 1000 ) / weight2;
+        return ret;
+    }
+    function calcMam(gym_Ke, gym_Fmax, pull_Ke, pull_Fmax)
+    {
+        var ret = 226 + ( 2.91 * gym_Fmax ) - ( 23.4 * gym_Ke ) + ( 0.9 * pull_Fmax ) - ( 0.81 * pull_Ke );
+        return ret;
+    }
+    function calcMam_wtkg(Mam , weight2)
+    {
+        var ret = Mam / weight2;
+        return ret;
+    }
+    function calcPercent( num, perc)
+    {
+        var ret = num * perc / 100;
+        return ret;
+    }
+    function calcKe( MaxWeight90, MaxWeight60, countN1, countN2)
+    {
+        var ret = ( MaxWeight90 - MaxWeight60 ) / ( countN1 - countN2 );
+        return ret;
+    }
+    function calcFmax( MaxWeight90, Ke, countN1)
+    {
+        var ret = MaxWeight90 - ( Ke * countN1 );
+        return ret;
+    }
+
+
+</script>
+
+</body>
+
+</html>

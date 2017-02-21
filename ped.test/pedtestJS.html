@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Педагогическое тестирование</title>
+    <script src="logic.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/css/uikit.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/js/uikit.min.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <h1>Укажите следующие параметры</h1></br>
+        <table>
+            <tr>
+                <td>
+                    <input type="text" id = "weight" value = 90> </br>
+                </td>
+                </tr>
+            <tr>
+                <td>
+                    <h2>Жим лежа:</h2>
+                    Max, кг:</br>
+                    <input type="text" id = "gym_maxWeight" ></br>
+                    90%:</br>
+                    <input type="text" id = "gym_maxWeight90" /></br>
+                    Кол-во повторов (n1):</br>
+                    <input type="text" id = "gym_countN1" ></br>
+                    60%:</br>
+                    <input type="text" id = "gym_maxWeight60" /></br>
+                    Кол-во повторов (n2):</br>
+                    <input type="text" id = "gym_countN2" ></br>
+                    Ke:</br>
+                    <input type="text" id = "gym_Ke" > </br>
+                    Fмакс рас сила:</br>
+                    <input type="text" id = "gym_Fmax" > </br>
+                </td>
+                <td>
+                    <h2>Тяга к груди:</h2>
+                    Max, кг:</br>
+                    <input type="text" id = "pull_maxWeight" ></br>
+                    90%:</br>
+                    <input type="text" id = "pull_maxWeight90" /></br>
+                    Кол-во повторов (n1):</br>
+                    <input type="text" id = "pull_countN1" ></br>
+                    60%:</br>
+                    <input type="text" id = "pull_maxWeight60" /></br>
+                    Кол-во повторов (n2):</br>
+                    <input type="text" id = "pull_countN2" ></br>
+                    Ke:</br>
+                    <input type="text" id = "pull_Ke" > </br>
+                    Fмакс рас сила:</br>
+                    <input type="text" id = "pull_Fmax" > </br>
+                </td>
+                <td>
+                    <h2>Результаты:</h2>
+                    ПК АнП:</br>
+                    <input type="text" id = "rez_AnP" ></br>
+                    ПК АнП мл/кг:</br>
+                    <input type="text" id = "rez_AnP_mlkg" /></br>
+                    МАМ:</br>
+                    <input type="text" id = "rez_mam" ></br>
+                    МАМ вт/кг:</br>
+                    <input type="text" id = "rez_mam_wtkg" /></br>
+                    </br>
+                    <button id = "button" onclick="whatNumber()"> Рассчитать </button>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+<script>
+    function resetForm()
+    {
+        document.calc.reset();
+        document.getElementById('result').innerText = "Result - ответ от сервера";
+    }
+
+
+</script>
+
+</body>
+
+</html>
